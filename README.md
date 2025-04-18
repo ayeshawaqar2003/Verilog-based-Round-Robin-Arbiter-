@@ -14,6 +14,9 @@ A block diagram of the Round-Robin Arbiter is shown below, including its main mo
 2.	Round-Robin Counter - Cycles through requests.
 3.	FSM Logic - Controls state transitions, ensuring fair allocation.
 4.	Output Control - Generates grant signals for each active requester.
+
+   ![image](https://github.com/user-attachments/assets/0dc5b2ec-1da9-4952-8a9e-923634767d4f)
+
  
                                                    Fig 2 State transition diagram
 
