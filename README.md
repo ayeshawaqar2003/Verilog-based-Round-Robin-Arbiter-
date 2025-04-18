@@ -6,7 +6,8 @@ The arbiter employs a Finite-State Machine (FSM) structure to handle state trans
 •	Round-Robin Counter: A counter cycles through requesters, granting access sequentially.
 •	Dynamic Scanning: The system scans requests at each clock cycle or upon acknowledgment, ensuring responsiveness to active requests.
 •	Bandwidth Reallocation: When a requester’s queue is empty, unused bandwidth is distributed among active requesters to optimize system resources.
-![image](https://github.com/user-attachments/assets/35672d10-e6b6-40e2-a393-702e37cd3a3e)
+
+
 Block Diagram / State Transition Diagram
 A block diagram of the Round-Robin Arbiter is shown below, including its main modules:
 1.	Input Interface - Manages incoming request signals.
