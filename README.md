@@ -20,7 +20,7 @@ A block diagram of the Round-Robin Arbiter is shown below, including its main mo
  
                                                    Fig 2 State transition diagram
 
-7. Design Choices and Implementation Logic
+Design Choices and Implementation Logic
 The design choices in this project include the following elements:
 •	Time Slice Allocation: Each request is granted access for a defined time slice, improving predictability.
 •	Request Handling: Requests are handled cyclically, ensuring fairness.
@@ -32,8 +32,8 @@ The Verilog Code encapsulates each design component, with a testbench to validat
 
 
 
-8. Truth Table
-Here's a structured report for the project, based on the requirements and rubric outlined. This includes detailed sections covering the project’s objectives, problem statement, design, implementation, simulation, and conclusions.
+Truth Table
+.
 
 
 
@@ -46,7 +46,7 @@ Here's a structured report for the project, based on the requirements and rubric
 
 
 
-
+RESULT:
 
 ![image](https://github.com/user-attachments/assets/83c8c149-dec1-4451-b7b1-5b227b191fbd)
 
