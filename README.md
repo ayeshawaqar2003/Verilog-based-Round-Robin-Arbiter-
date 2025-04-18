@@ -40,12 +40,8 @@ Here's a structured report for the project, based on the requirements and rubric
 
 
 
-STATE	REQ[0]	REQ[1]	REQ[2]	REQ[3]	GNT[0]	GNT[1]	GNT[2]	GNT[3]
-IDLE	0	0	0	0	0	0	0	0
-S0	1	0	0	0	1	0	0	0
-S1	0	1	0	0	0	1	0	0
-S2	0	0	1	0	0	0	1	0
-S3	0	0	0	1	0	0	0	1
+![image](https://github.com/user-attachments/assets/65f7c196-beb3-4f44-ad48-9289028caa45)
+
 
 
 
