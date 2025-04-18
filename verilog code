@@ -1,0 +1,83 @@
+// Verilog Code for Round-Robin Arbiter
+module roundrobin (
+    input clk,
+    input rst,
+    input [3:0] REQ,       // Request inputs
+    output reg [3:0] GNT   // Grant access outputs
+);
+
+// State variables
+reg [2:0] present_state;
+reg [2:0] next_state;
+reg [3:0] time_slice_counter;
+parameter TIME_SLICE = 10; // Fixed time slice duration
+
+// State definitions
+parameter [2:0] S_IDLE = 3'b000;
+parameter [2:0] S_0 = 3'b001;
+parameter [2:0] S_1 = 3'b010;
+parameter [2:0] S_2 = 3'b011;
+parameter [2:0] S_3 = 3'b100;
+
+// Sequential logic for state transitions and time slice counter
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        present_state <= S_IDLE;
+        time_slice_counter <= 0;
+    end else begin
+        present_state <= next_state;
+        if (time_slice_counter < TIME_SLICE) begin
+            time_slice_counter <= time_slice_counter + 1;
+        end else begin
+            time_slice_counter <= 0;
+        end
+    end
+end
+
+// Combinational logic for next state transitions
+always @(*) begin
+    case (present_state)
+        S_IDLE: begin
+            if (REQ[0]) next_state = S_0;
+            else if (REQ[1]) next_state = S_1;
+            else if (REQ[2]) next_state = S_2;
+            else if (REQ[3]) next_state = S_3;
+            else next_state = S_IDLE;
+        end
+        S_0: begin
+            if (REQ[1]) next_state = S_1;
+            else if (REQ[2]) next_state = S_2;
+            else if (REQ[3]) next_state = S_3;
+            else next_state = S_IDLE;
+        end
+        S_1: begin
+            if (REQ[2]) next_state = S_2;
+            else if (REQ[3]) next_state = S_3;
+            else next_state = S_IDLE;
+        end
+        S_2: begin
+            if (REQ[3]) next_state = S_3;
+            else next_state = S_IDLE;
+        end
+        S_3: begin
+            if (REQ[0]) next_state = S_0;
+            else if (REQ[1]) next_state = S_1;
+            else if (REQ[2]) next_state = S_2;
+            else next_state = S_IDLE;
+        end
+        default: next_state = S_IDLE;
+    endcase
+end
+
+// Output assignment based on current state
+always @(*) begin
+    case (present_state)
+        S_0: GNT = 4'b0001;
+        S_1: GNT = 4'b0010;
+        S_2: GNT = 4'b0100;
+        S_3: GNT = 4'b1000;
+        default: GNT = 4'b0000;
+    endcase
+end
+
+endmodule
