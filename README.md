@@ -36,12 +36,20 @@ The Verilog Code encapsulates each design component, with a testbench to validat
 Here's a structured report for the project, based on the requirements and rubric outlined. This includes detailed sections covering the project’s objectives, problem statement, design, implementation, simulation, and conclusions.
 
 
+
+
+
+
 STATE	REQ[0]	REQ[1]	REQ[2]	REQ[3]	GNT[0]	GNT[1]	GNT[2]	GNT[3]
 IDLE	0	0	0	0	0	0	0	0
 S0	1	0	0	0	1	0	0	0
 S1	0	1	0	0	0	1	0	0
 S2	0	0	1	0	0	0	1	0
 S3	0	0	0	1	0	0	0	1
+
+
+
+
 
 
 ![image](https://github.com/user-attachments/assets/83c8c149-dec1-4451-b7b1-5b227b191fbd)
