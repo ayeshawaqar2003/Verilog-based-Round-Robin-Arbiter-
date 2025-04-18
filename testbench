@@ -1,0 +1,46 @@
+// Testbench for Round-Robin Arbiter
+module roundrobin_tb;
+
+    reg clk;
+    reg rst;
+    reg [3:0] REQ;
+    wire [3:0] GNT;
+
+    // Instantiate Design Under Test (DUT)
+    roundrobin DUT(.clk(clk), .rst(rst), .REQ(REQ), .GNT(GNT));
+
+    // Generate a 10 ns Time Period Clock
+    always #5 clk = ~clk;
+
+    initial begin
+        // Initialize signals
+        clk = 0;
+        rst = 1;   // Assert reset initially
+        REQ = 4'b0;
+
+        // Hold reset high for 20 ns to ensure it's asserted
+        #20 rst = 0;  // Deassert reset after 20 ns
+
+        // Apply test vectors after reset is deasserted
+        @(posedge clk) REQ = 4'b1000;
+        @(posedge clk) REQ = 4'b1110;
+        @(posedge clk) REQ = 4'b0110;
+        @(posedge clk) REQ = 4'b1100;
+        @(posedge clk) REQ = 4'b1110;
+        @(posedge clk) REQ = 4'b1111;
+        @(posedge clk) REQ = 4'b1000;
+        @(posedge clk) REQ = 4'b0010;
+        @(posedge clk) REQ = 4'b1010;
+        @(posedge clk) REQ = 4'b0100;
+
+        // Optionally reassert reset at the end to test reset behavior
+        #50 rst = 1;  // Assert reset again
+        #10 rst = 0;  // Deassert reset
+    end
+
+    // Display output at each clock cycle for debugging
+    initial begin
+        $monitor("Time=%0t, clk=%b, rst=%b, REQ=%b, GNT=%b", $time, clk, rst, REQ, GNT);
+    end
+
+endmodule
